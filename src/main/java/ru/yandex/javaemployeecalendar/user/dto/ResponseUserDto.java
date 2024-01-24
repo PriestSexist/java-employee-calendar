@@ -1,21 +1,22 @@
 package ru.yandex.javaemployeecalendar.user.dto;
 
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import ru.yandex.javaemployeecalendar.user.model.Role;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-public class UserDto {
+public class ResponseUserDto {
     private final int id;
-    @Email
     private final String email;
     private final String password;
-    private final List<String> roles;
+    private final Role role;
+    private final boolean isAccountNonExpired;
+    private final boolean isAccountNonLocked;
+    private final boolean isCredentialsNonExpired;
+    private final boolean isEnabled;
 }

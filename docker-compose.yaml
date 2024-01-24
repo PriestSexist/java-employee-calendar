@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  calendar-service:
+    build: .
+    depends_on:
+      - calendar-db
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://calendar-db:5432/calendar
+      - SPRING_DATASOURCE_USER=root
+      - SPRING_DATASOURCE_PASSWORD=root
+
+  calendar-db:
+    image: postgres:14-alpine
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=calendar
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root

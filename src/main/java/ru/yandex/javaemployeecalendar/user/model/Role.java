@@ -1,9 +1,10 @@
 package ru.yandex.javaemployeecalendar.user.model;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "role")
@@ -14,6 +15,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "role")
-    private String role;
+    @Column(name = "name")
+    @Enumerated(EnumType.STRING)
+    private RoleEnum name;
 }

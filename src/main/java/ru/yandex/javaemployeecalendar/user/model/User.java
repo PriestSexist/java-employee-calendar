@@ -1,20 +1,18 @@
 package ru.yandex.javaemployeecalendar.user.model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +21,15 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-
-    @ManyToMany
-    @JoinTable(
-            name = "user_role_connection",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @Column(name = "is_account_non_expired")
+    private boolean isAccountNonExpired;
+    @Column(name = "is_account_non_locked")
+    private boolean isAccountNonLocked;
+    @Column(name = "is_credentials_non_expired")
+    private boolean isCredentialsNonExpired;
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
 }

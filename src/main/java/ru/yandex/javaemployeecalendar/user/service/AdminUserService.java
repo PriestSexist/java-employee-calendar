@@ -1,10 +1,21 @@
 package ru.yandex.javaemployeecalendar.user.service;
 
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import ru.yandex.javaemployeecalendar.user.dto.UserDto;
-import ru.yandex.javaemployeecalendar.user.model.User;
+import ru.yandex.javaemployeecalendar.user.dto.PatchUserDto;
+import ru.yandex.javaemployeecalendar.user.dto.PostUserDto;
+import ru.yandex.javaemployeecalendar.user.dto.ResponseUserDto;
+
+import java.util.List;
 
 public interface AdminUserService {
-    User postUser(UserDto userDto);
+    ResponseUserDto postUser(PostUserDto postUserDto);
+
+    ResponseUserDto getUserById(int userId);
+
+    ResponseUserDto patchUser(PatchUserDto patchUserDto, int userId);
+
+    void deleteUser(int userId);
+
+    List<ResponseUserDto> getAllUsers(int from, int size);
+
+    int getUserWorkingTimeByUserId(int userId);
 }
